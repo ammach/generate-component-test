@@ -1,0 +1,30 @@
+it('', () => {
+    // Given
+#foreach($property in $properties)
+#if($property.type == "array")
+    const $property.name = [];
+#elseif($property.type == "object")
+    const $property.name = {};
+#end
+#end
+
+#foreach($spiedService in $spiedServices)
+    const spyOn$spiedService.method.substring(0,1).toUpperCase()$spiedService.method.substring(1) = spyOn($spiedService.name, '$spiedService.method').and.returnValues(anHttpOk({}));
+#end
+
+    // When
+    const wrapper = shallow(<$componentName #foreach($property in $properties)
+                                         #if($property.type == "string")
+                                             $property.name = ""
+                                         #elseif($property.type == "number")
+                                             $property.name = {33}
+                                         #elseif($property.type == "callback")
+                                             $property.name = {anEmptyFunction()}
+                                         #else
+                                             $property.name = {$property.name}
+                                         #end
+                                         #end/>);
+
+    // Then
+
+  });
